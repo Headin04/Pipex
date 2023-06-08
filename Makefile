@@ -26,6 +26,7 @@ C_FILES			= main.c\
 					open_close.c\
 					pipe_fork.c\
 					behavior.c\
+					lst.c\
 #C_FILES_BONUS	=
 
 SRCS			= $(patsubst %, $(C_DIR)/%, $(C_FILES))

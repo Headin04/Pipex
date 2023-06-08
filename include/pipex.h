@@ -62,17 +62,35 @@ typedef struct s_all
     t_order order;
 }   t_all;
 
+    /*UTILS*/
 t_list_p	*ft_lstnewp(char **content, char *pcontent);
-void	ft_lstadd_backp(t_list_p **lst, t_list_p *new);
-void	print_lst(t_list_p *lst);
-char	*get_next_2points(int fd);
+void	    ft_lstadd_backp(t_list_p **lst, t_list_p *new);
+void	    print_lst(t_list_p *lst);
 
-void    open_files1(t_all *all);
-void    open_files2(t_all *all);
-void    create_pipe(t_all *all);
-void    create_fork(t_all *all);
-void    child_behavior(t_all *all);
-int    child2_behavior(t_all *all);
-int    parents_behavior(t_all *all);
-void	ft_free_p(t_list_p **lst);
+    /*OPEN_CLOSE*/
+void        open_files1(t_all *all);
+void        open_files2(t_all *all);
+void        create_pipe(t_all *all);
+void        create_fork(t_all *all);
+void	    ft_free_p(t_list_p **lst);
+void        end(t_all *all);
+
+    /*BEHAVIOR*/
+void        child_behavior(t_all *all);
+void        child2_behavior(t_all *all);
+int         parents_behavior(t_all *all);
+
+    /*LST*/
+void        path_in_lst(t_all *all);
+void        get_path(t_all *all);
+void        put_in_lst(t_all *all);
+
+    /*PIPE_FORK*/
+void        create_pipe(t_all *all);
+void        create_fork(t_all *all);
+
+    /*MAIN*/
+void        pipex(t_all *all);
+void        all_initialization(int argc, char **argv, char **envp, t_all *all);
+
 #endif

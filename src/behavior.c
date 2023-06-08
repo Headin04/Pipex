@@ -31,7 +31,6 @@ void    child_behavior(t_all *all)
     int     i;
 
     i = 0;
-    printf("uiui\n");
     current_path = NULL;
     if (dup2(all->fd.write_end, STDOUT_FILENO) == -1)
     {
@@ -47,10 +46,8 @@ void    child_behavior(t_all *all)
     close(all->fd.write_end);
     close(all->fd.read_end);
     current_path = get_the_complet_path(all);
-    // printf("ui == %i\n", all->order.nb_path);
     while (i != all->order.nb_path && execve(current_path, all->order.lst->content, all->order.envp) == -1)
     {
-        // printf("ii == %i\n", i);
         free(current_path);
         all->order.path_lst = all->order.path_lst->next;
         ++i;
@@ -60,13 +57,12 @@ void    child_behavior(t_all *all)
     exit(EXIT_FAILURE);
 }
 
-int    child2_behavior(t_all *all)
+void    child2_behavior(t_all *all)
 {
     char    *current_path;
     int     i;
 
     i = 0;
-    printf("hola\n");
     current_path = NULL;
     if (dup2(all->fd.read_end, STDIN_FILENO) == -1)
     {

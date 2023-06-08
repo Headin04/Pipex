@@ -63,3 +63,11 @@ void	ft_free_p(t_list_p **lst)
 		*lst = tmp;
 	}
 }
+
+void    end(t_all *all)
+{
+    close(all->fd.fd_file1);
+    close(all->fd.fd_file2);
+    ft_free_p(&all->order.lst);
+    ft_free_p(&all->order.path_lst);
+}
