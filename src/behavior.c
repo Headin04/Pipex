@@ -21,10 +21,22 @@ char    *get_the_complet_path(t_all *all)\
         return (current_path = all->order.lst->content[0]);
     len = ft_strlen(all->order.path_lst->pcontent) + ft_strlen(all->order.lst->content[0]);
     current_path = ft_strnjoin(all->order.path_lst->pcontent, all->order.lst->content[0], len);
-    // printf("current = %s\n", current_path);
     return(current_path);
 }
 
+// void    execute(t_all *all, char *current_path)
+// {
+//     int i;
+
+//     i = 0;
+//     while (i != all->order.nb_path && execve(current_path, all->order.lst->content, all->order.envp) == -1)
+//     {
+//         free(current_path);
+//         all->order.path_lst = all->order.path_lst->next;
+//         ++i;
+//         current_path = get_the_complet_path(all);
+//     }
+// }
 void    child_behavior(t_all *all)
 {
     char    *current_path;
@@ -50,8 +62,8 @@ void    child_behavior(t_all *all)
     {
         free(current_path);
         all->order.path_lst = all->order.path_lst->next;
-        ++i;
         current_path = get_the_complet_path(all);
+        ++i;
     }
     perror("Command 1 not found");
     exit(EXIT_FAILURE);
