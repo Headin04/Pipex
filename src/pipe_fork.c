@@ -12,34 +12,33 @@
 
 #include "pipex.h"
 
-void    create_pipe(t_all *all)
+void	create_pipe(t_all *all)
 {
-    all->fd.pipe_result = pipe(all->fd.fd);
-
-    if (all->fd.pipe_result == -1)
-        return (perror("Error during the creation of the pipe"));
-    all->fd.read_end = all->fd.fd[0];
-    all->fd.write_end = all->fd.fd[1];
+	all->fd.pipe_result = pipe(all->fd.fd);
+	if (all->fd.pipe_result == -1)
+		return (perror("Error during the creation of the pipe"));
+	all->fd.read_end = all->fd.fd[0];
+	all->fd.write_end = all->fd.fd[1];
 }
 
-void    create_fork(t_all *all)
+void	create_fork(t_all *all)
 {
-    all->fd.pid = fork();
-    if (all->fd.pid == -1)
-    {
-        perror("Error with the child process");
-        exit(EXIT_FAILURE);
-    }
-    if (all->fd.pid == 0)
-       child_behavior(all);
-    all->fd.pid2 = fork();
-    if (all->fd.pid2 == -1)
-    {
-        perror("Error with the child process");
-        exit(EXIT_FAILURE);
-    }
-    if (all->fd.pid2 == 0)
-        child2_behavior(all);
-    else
-        parents_behavior(all);
+	all->fd.pid = fork();
+	if (all->fd.pid == -1)
+	{
+		perror("Error with the child process");
+		exit(EXIT_FAILURE);
+	}
+	if (all->fd.pid == 0)
+		child_behavior(all);
+	all->fd.pid2 = fork();
+	if (all->fd.pid2 == -1)
+	{
+		perror("Error with the child process");
+		exit(EXIT_FAILURE);
+	}
+	if (all->fd.pid2 == 0)
+		child2_behavior(all);
+	else
+		parents_behavior(all);
 }
