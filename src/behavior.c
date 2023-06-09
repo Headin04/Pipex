@@ -24,25 +24,25 @@ char    *get_the_complet_path(t_all *all)\
     return(current_path);
 }
 
-// void    execute(t_all *all, char *current_path)
-// {
-//     int i;
+void    execute(t_all *all, char *current_path)
+{
+    int i;
 
-//     i = 0;
-//     while (i != all->order.nb_path && execve(current_path, all->order.lst->content, all->order.envp) == -1)
-//     {
-//         free(current_path);
-//         all->order.path_lst = all->order.path_lst->next;
-//         ++i;
-//         current_path = get_the_complet_path(all);
-//     }
-// }
+    i = 0;
+    while (i != all->order.nb_path && execve(current_path, all->order.lst->content, all->order.envp) == -1)
+    {
+        free(current_path);
+        all->order.path_lst = all->order.path_lst->next;
+        ++i;
+        current_path = get_the_complet_path(all);
+    }
+}
 void    child_behavior(t_all *all)
 {
     char    *current_path;
-    int     i;
+    // int     i;
 
-    i = 0;
+    // i = 0;
     current_path = NULL;
     if (dup2(all->fd.write_end, STDOUT_FILENO) == -1)
     {
@@ -58,13 +58,14 @@ void    child_behavior(t_all *all)
     close(all->fd.write_end);
     close(all->fd.read_end);
     current_path = get_the_complet_path(all);
-    while (i != all->order.nb_path && execve(current_path, all->order.lst->content, all->order.envp) == -1)
-    {
-        free(current_path);
-        all->order.path_lst = all->order.path_lst->next;
-        current_path = get_the_complet_path(all);
-        ++i;
-    }
+    execute(all, current_path);
+    // while (i != all->order.nb_path && execve(current_path, all->order.lst->content, all->order.envp) == -1)
+    // {
+    //     free(current_path);
+    //     all->order.path_lst = all->order.path_lst->next;
+    //     current_path = get_the_complet_path(all);
+    //     ++i;
+    // }
     perror("Command 1 not found");
     exit(EXIT_FAILURE);
 }
@@ -72,9 +73,9 @@ void    child_behavior(t_all *all)
 void    child2_behavior(t_all *all)
 {
     char    *current_path;
-    int     i;
+    // int     i;
 
-    i = 0;
+    // i = 0;
     current_path = NULL;
     if (dup2(all->fd.read_end, STDIN_FILENO) == -1)
     {
@@ -90,13 +91,14 @@ void    child2_behavior(t_all *all)
     close(all->fd.read_end);
     all->order.lst = all->order.lst->next;
     current_path = get_the_complet_path(all);
-    while (i != all->order.nb_path && execve(current_path, all->order.lst->content, all->order.envp) == -1)
-    {
-        free(current_path);
-        all->order.path_lst = all->order.path_lst->next;
-        ++i;
-        current_path = get_the_complet_path(all);
-    }
+    // while (i != all->order.nb_path && execve(current_path, all->order.lst->content, all->order.envp) == -1)
+    // {
+    //     free(current_path);
+    //     all->order.path_lst = all->order.path_lst->next;
+    //     ++i;
+    //     current_path = get_the_complet_path(all);
+    // }
+    execute(all, current_path);
     perror("Command not found");
     exit(EXIT_FAILURE);
 }

@@ -44,8 +44,7 @@ void	ft_lstadd_backp(t_list_p **lst, t_list_p *new)
 			*lst = new;
 	}
 }
-
-void	print_lst(t_list_p *lst)
+/*void	print_lst(t_list_p *lst)
 {
 	// int	i;
 
@@ -58,4 +57,4 @@ void	print_lst(t_list_p *lst)
 			// i++;
 			lst = lst->next;
 		}
-}
+}*/

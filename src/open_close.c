@@ -20,7 +20,6 @@ void    open_files1(t_all *all)
         perror("Error during the opening of file 1");
         exit(EXIT_FAILURE);
     }
-    // ft_printf("fd_file == %i\n", all->fd.fd_file1);
 }
 
 void    open_files2(t_all *all)
@@ -31,7 +30,6 @@ void    open_files2(t_all *all)
         perror("Error during the opening of file 2");
         exit(EXIT_FAILURE);
     }
-    // ft_printf("fd_file2 == %i\n", all->fd.fd_file2);
 }
 
 
@@ -47,7 +45,6 @@ void	ft_free_p(t_list_p **lst)
 		tmp = (*lst)->next;
 		if ((*lst)->content != NULL)
         {
-            // printf("ici\n");
             i = 0;
             while ((*lst)->content[i] != NULL)
             {
@@ -56,10 +53,8 @@ void	ft_free_p(t_list_p **lst)
             }
 			free((*lst)->content);
         }
-		// if (((*lst)->pcontent) != NULL)
-			free((*lst)->pcontent);
-		// if (*lst != NULL)
-		    free(*lst);
+		free((*lst)->pcontent);
+	    free(*lst);
 		*lst = tmp;
 	}
 }

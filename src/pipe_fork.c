@@ -20,13 +20,10 @@ void    create_pipe(t_all *all)
         return (perror("Error during the creation of the pipe"));
     all->fd.read_end = all->fd.fd[0];
     all->fd.write_end = all->fd.fd[1];
-    // ft_printf("fd[0] == %i\n", all->fd.fd[0]);
-    // ft_printf("fd[1] == %i\n", all->fd.fd[1]);
 }
 
 void    create_fork(t_all *all)
 {
-    // printf("yeaah\n");
     all->fd.pid = fork();
     if (all->fd.pid == -1)
     {
