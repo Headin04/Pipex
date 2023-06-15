@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:24:04 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/05/31 16:26:23 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:55:34 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@ char	*get_the_complet_path(t_all *all)
 		return (current_path = tmp);
 	len = ft_strlen(all->order.path_lst->pcontent) + ft_strlen(tmp);
 	current_path = ft_strnjoin(all->order.path_lst->pcontent, tmp, len);
-	return(current_path);
+	return (current_path);
 }
 
 void	execute(t_all *all, char *c_p)
 {
 	int	i;
+
 	i = 0;
 	while (i != all->order.nb_path
-			&& execve(c_p, all->order.lst->content, all->order.envp) == -1)
+		&& execve(c_p, all->order.lst->content, all->order.envp) == -1)
 	{
 		free(c_p);
 		all->order.path_lst = all->order.path_lst->next;
@@ -44,7 +45,7 @@ void	execute(t_all *all, char *c_p)
 void	child_behavior(t_all *all)
 {
 	char	*current_path;
-	
+
 	current_path = NULL;
 	if (dup2(all->fd.write_end, STDOUT_FILENO) == -1)
 	{
@@ -67,6 +68,7 @@ void	child_behavior(t_all *all)
 void	child2_behavior(t_all *all)
 {
 	char	*current_path;
+
 	current_path = NULL;
 	if (dup2(all->fd.read_end, STDIN_FILENO) == -1)
 	{

@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 10:45:34 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/05/31 16:28:36 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/15 18:21:04 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,35 @@ void	pipex(t_all *all)
 
 void	all_initialization(int argc, char **argv, char **envp, t_all *all)
 {
-	all->order.argv = argv;
-	all->order.nb_cmd = argc - 3;
-	all->order.envp = envp;
-	all->order.lst = NULL;
-	all->order.PATH = NULL;
-	all->order.path_lst = NULL;
+		all->order.argv = argv;
+		all->order.nb_cmd = argc - 3;
+		all->order.envp = envp;
+		all->order.lst = NULL;
+		all->order.path = NULL;
+		all->order.path_lst = NULL;
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_all	all;
+	int i;
 
+	i = 0;
+	if (envp[i] == NULL)
+	{	
+		perror("HELP");
+		exit(EXIT_FAILURE);
+	}
 	all_initialization(argc, argv, envp, &all);
 	if (argc < 5)
 	{
 		perror("Too many or not enough arguments");
 		exit(EXIT_FAILURE);
+	}
+	while (all.order.envp[i] != NULL)
+	{
+		printf("envp = %s\n", all.order.envp[i]);
+		i++;
 	}
 	pipex(&all);
 	end(&all);

@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/15 16:21:49 by ode-cleb          #+#    #+#             */
+/*   Updated: 2023/06/15 18:19:39 by ode-cleb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	path_in_lst(t_all *all)
 {
 	int		i;
-	char    **split;
+	char	**split;
 	char	*dest;
 	int		len;
-	
+
 	i = 0;
-	split = ft_split(all->order.PATH, ':');
+	split = ft_split(all->order.path, ':');
 	while (split[i] != NULL)
 	{
 		len = ft_strlen(split[i]);
@@ -31,11 +43,14 @@ void	path_in_lst(t_all *all)
 void	get_path(t_all *all)
 {
 	int	i;
+	int	size;
 
 	i = 0;
-	while (all->order.envp[i++] != NULL && all->order.PATH == NULL)
-		all->order.PATH = ft_strnstr(all->order.envp[i], "PATH", 6);
-	all->order.PATH = ft_strnstr(all->order.PATH, "/usr", ft_strlen(all->order.PATH));
+	size = 0;
+	while (all->order.envp[i++] != NULL && all->order.path == NULL)
+		all->order.path = ft_strnstr(all->order.envp[i], "PATH", 6);
+	size = ft_strlen(all->order.path);
+	all->order.path = ft_strnstr(all->order.path, "/usr", size);
 	path_in_lst(all);
 }
 
