@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:45:00 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/06/15 16:40:06 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:59:14 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void		open_files2(t_all *all);
 void		create_pipe(t_all *all);
 void		create_fork(t_all *all);
 void		ft_free_p(t_list_p **lst);
+void		free_tmp(t_list_p *tmp);
 void		end(t_all *all);
 	/*BEHAVIOR*/
 void		child_behavior(t_all *all);

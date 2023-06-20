@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 10:45:34 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/06/15 18:21:04 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:00:24 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	pipex(t_all *all)
 {
 	put_in_lst(all);
 	get_path(all);
+	all->order.path_lst_start = all ->order.path_lst;
 	open_files1(all);
 	open_files2(all);
 	create_pipe(all);
@@ -35,12 +36,12 @@ void	all_initialization(int argc, char **argv, char **envp, t_all *all)
 int	main(int argc, char **argv, char **envp)
 {
 	t_all	all;
-	int i;
+	int		i;
 
 	i = 0;
 	if (envp[i] == NULL)
-	{	
-		perror("HELP");
+	{
+		ft_printf("No environment found\n");
 		exit(EXIT_FAILURE);
 	}
 	all_initialization(argc, argv, envp, &all);
@@ -48,11 +49,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		perror("Too many or not enough arguments");
 		exit(EXIT_FAILURE);
-	}
-	while (all.order.envp[i] != NULL)
-	{
-		printf("envp = %s\n", all.order.envp[i]);
-		i++;
 	}
 	pipex(&all);
 	end(&all);

@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:21:49 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/06/15 18:19:39 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:59:53 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,22 @@ void	get_path(t_all *all)
 
 	i = 0;
 	size = 0;
-	while (all->order.envp[i++] != NULL && all->order.path == NULL)
+	while (all->order.envp[i] != NULL && all->order.path == NULL)
+	{
 		all->order.path = ft_strnstr(all->order.envp[i], "PATH", 6);
-	size = ft_strlen(all->order.path);
-	all->order.path = ft_strnstr(all->order.path, "/usr", size);
-	path_in_lst(all);
+		i++;
+	}
+	if (all->order.path != NULL)
+	{
+		size = ft_strlen(all->order.path);
+		all->order.path = ft_strnstr(all->order.path, "/usr", size);
+		path_in_lst(all);
+	}
+	else
+	{
+		all->order.nb_path = 1;
+		ft_printf("NO PATH\n");
+	}
 }
 
 void	put_in_lst(t_all *all)

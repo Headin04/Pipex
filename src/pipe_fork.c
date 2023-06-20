@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:26:03 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/05/31 16:25:26 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:19:22 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	create_fork(t_all *all)
 	all->fd.pid = fork();
 	if (all->fd.pid == -1)
 	{
-		perror("Error with the child process");
+		perror("Error with the child 1 process");
 		exit(EXIT_FAILURE);
 	}
 	if (all->fd.pid == 0)
@@ -34,7 +34,7 @@ void	create_fork(t_all *all)
 	all->fd.pid2 = fork();
 	if (all->fd.pid2 == -1)
 	{
-		perror("Error with the child process");
+		perror("Error with the child 2 process");
 		exit(EXIT_FAILURE);
 	}
 	if (all->fd.pid2 == 0)

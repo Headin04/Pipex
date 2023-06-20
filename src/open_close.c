@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:25:36 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/06/15 16:54:12 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:50:07 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	open_files1(t_all *all)
 	if (all->fd.fd_file1 == -1)
 	{
 		perror("Error during the opening of file 1");
+		ft_free_p(&all->order.lst);
+		ft_free_p(&all->order.path_lst);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -29,6 +31,8 @@ void	open_files2(t_all *all)
 	if (all->fd.fd_file2 == -1)
 	{
 		perror("Error during the opening of file 2");
+		ft_free_p(&all->order.lst);
+		ft_free_p(&all->order.path_lst);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -38,6 +42,7 @@ void	ft_free_p(t_list_p **lst)
 	t_list_p	*tmp;
 	int			i;
 
+	i = 0;
 	tmp = NULL;
 	while (*lst != NULL)
 	{
@@ -56,6 +61,20 @@ void	ft_free_p(t_list_p **lst)
 		free(*lst);
 		*lst = tmp;
 	}
+}
+
+void	free_tmp(t_list_p *tmp)
+{
+	int	i;
+
+	i = 0;
+	while (tmp->content[i] != NULL)
+	{
+		free(tmp->content[i]);
+		i++;
+	}
+	free(tmp->content);
+	free(tmp);
 }
 
 void	end(t_all *all)
