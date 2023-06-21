@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 10:45:34 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/06/20 16:00:24 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/21 12:47:04 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv, char **envp)
 		exit(EXIT_FAILURE);
 	}
 	all_initialization(argc, argv, envp, &all);
-	if (argc < 5)
+	if (argc != 5)
 	{
 		perror("Too many or not enough arguments");
 		exit(EXIT_FAILURE);
