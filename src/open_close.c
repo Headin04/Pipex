@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:25:36 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/06/20 15:50:07 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:41:08 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	open_files2(t_all *all)
 	if (all->fd.fd_file2 == -1)
 	{
 		perror("Error during the opening of file 2");
+		close(all->fd.fd_file1);
 		ft_free_p(&all->order.lst);
 		ft_free_p(&all->order.path_lst);
 		exit(EXIT_FAILURE);
